@@ -1,0 +1,234 @@
+$primary-color : #2a2f32;
+$secondary-color : #056162;
+$text-color: #ffff;
+$header-hieght: 65px;
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: $text-color;
+    font-family: 'Roboto';
+}
+
+::-webkit-scrollbar{
+    width: 6px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: lighten($primary-color, 10%);
+    border-radius: 3px;
+}
+.__block{
+    display: block;
+}
+.__selected{
+    background-color: lighten($primary-color,8%);
+}
+.__attachIcon{
+    transform: rotate(45deg)
+}
+.__icon{
+    color: $text-color;
+    margin: 0 10px;
+    cursor: pointer;
+}
+.__icon__small{
+    @extend .__icon;
+    cursor: auto;
+    display: block;
+}
+.h4__name{
+    color: $text-color ;
+    margin-left: 15px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: .6px;
+}
+
+.input__text{
+    outline: none;
+    border: none;
+    padding: 5px 8px;
+    background-color: lighten($primary-color,8%);
+    color: $text-color;
+    font-family: 'Roboto';
+    font-size: 14px;
+    width: 100%;
+    margin: 5px ;
+}
+.__flexLeft{
+    justify-content: flex-start;
+}
+.__flexRight{
+    justify-content: flex-end;
+}
+.__backgroundRight{
+    background-color: $secondary-color!important;
+}
+.__time{
+    font-size: 10px;
+    margin-left: 10px;
+}
+.chatBubble{
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    &__container{
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        padding: 8px 7px;
+        border-radius: 10px;
+        background-color: $primary-color;
+            .__chatBubble__message{
+                font-size: 15px;
+                font-weight: 300 ;
+                padding: 5px;
+            }
+            .__messageInfo{
+                align-self: flex-end;
+                display:flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                height: 100%;
+            }
+    }
+}
+
+.App{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    .contacts__container{
+        flex: .35;
+        background-color: darken($primary-color,3%);
+        border-right: lighten($primary-color, 10%) .5px solid;
+        .contacts__header{
+            display: flex;
+            height: $header-hieght;
+            padding: 15px;
+            background-color: $primary-color;
+            align-items: center;
+            &__profil{
+                flex:.7;
+            }
+            &__icon{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex:.3;
+            }
+        }
+        .contacts__search{
+            height: 40px;
+            border-bottom: 1px solid lighten($primary-color,10%);
+            .search__container{
+                display: flex;
+                align-items: center;
+                background-color: lighten($primary-color,8%);
+                height: 35px;
+                border-radius: 17.5px;
+                margin: 5px 8px;
+                overflow: hidden;
+            }
+        }
+    }
+    .conversation__container{
+        flex: .65;
+        background-image: url("image/whatsappbg.jpg");
+        background-repeat: repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        .conversation__header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px;
+            width: 100%;
+            height: $header-hieght;
+            background-color: $primary-color;
+
+          &__profil{
+              display: flex;
+              align-items: center;
+              flex: .8;
+              cursor: pointer;
+          } 
+          &__icons{
+              display: flex;
+              flex:.2;
+              justify-content: flex-end;
+              align-items: center;
+          }
+        }
+        .conversation__scrollContainer{
+            padding: 0 30px;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: scroll;
+        }
+        .conversation__chatInputContainer{
+            height: $header-hieght;
+            background-color: $primary-color ;
+            display: flex;
+            align-items: center;
+            input{
+                height: 45px;
+                border-radius: 22.5px;
+                padding-left: 18px;
+            }
+        }
+    }
+}
+.contacts__list{
+    width: 100%;
+}
+.chatMessage__container{
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    width: 100%;
+    height: 70px;
+    .chatMessage__avatar{
+        flex: .15;
+    }
+    .chatMessage__contactInfo{
+        display: flex;
+        flex: .85;
+        height: 70px;
+        justify-content: center;
+        align-items:flex-start ;
+        flex-direction: column;
+        margin-left: 6px;
+        border-bottom: 1px solid lighten($primary-color,10%);
+        &__nameTime{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            .contact__name{
+                margin: 0;
+            }
+        }
+        span{
+            font-size: 12px;
+            font-weight: 100;
+            display: block;
+        }
+        &__message{
+            font-size: 14px;
+            font-weight:300 ;
+        }
+    }
+}
+.chatMessage__container:hover {
+    @extend .__selected;
+}
+.chatMessage__container__selected{
+    @extend .__selected;
+}
