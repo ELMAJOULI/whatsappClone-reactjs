@@ -10,13 +10,21 @@ $header-hieght: 65px;
     color: $text-color;
     font-family: 'Roboto';
 }
-
+.emoji-picker-react .emoji-group:before{
+    background-color: transparent !important;
+}
+.emoji-picker-react .emoji-categories button{
+    filter: brightness(0) invert(1) !important;
+}
 ::-webkit-scrollbar{
     width: 6px;
 }
 ::-webkit-scrollbar-thumb{
     background-color: lighten($primary-color, 10%);
     border-radius: 3px;
+}
+.__displayNone{
+    display: none;
 }
 .__block{
     display: block;
@@ -32,10 +40,29 @@ $header-hieght: 65px;
     margin: 0 10px;
     cursor: pointer;
 }
+.__icon__arrow{
+    background-color: transparent;
+    z-index: -10;
+}
+.__icon__search{
+    z-index: 10;
+}
+.__icon__container{
+    transition: all .5s ease-in ;
+}
 .__icon__small{
     @extend .__icon;
     cursor: auto;
     display: block;
+}
+.loading__icon{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    background-color: $secondary-color;
 }
 .h4__name{
     color: $text-color ;
@@ -77,6 +104,7 @@ $header-hieght: 65px;
     padding: 5px;
     &__container{
         display: flex;
+        max-width: 50%;
         position: relative;
         justify-content: space-between;
         padding: 8px 7px;
@@ -101,8 +129,12 @@ $header-hieght: 65px;
     display: flex;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
     .contacts__container{
         flex: .35;
+        height: 100vh;
         background-color: darken($primary-color,3%);
         border-right: lighten($primary-color, 10%) .5px solid;
         .contacts__header{
@@ -132,6 +164,28 @@ $header-hieght: 65px;
                 border-radius: 17.5px;
                 margin: 5px 8px;
                 overflow: hidden;
+                position: relative;
+                .__icon__container{
+                    position: absolute;
+                    left: 0px;
+                }
+                .input__text{
+                    @extend .input__text;
+                    margin-left: 40px;
+                }
+            }
+            .search__container:focus-within{
+                @extend .search__container;
+                .__icon__search{
+                    transform: rotate(360deg);
+                    background-color: transparent;
+                    z-index: -10;
+                }
+                .__icon__arrow{
+                    transform: rotate(360deg);
+                    background-color: lighten($primary-color,8%);
+                    z-index: 10;
+                }
             }
         }
     }
@@ -141,7 +195,9 @@ $header-hieght: 65px;
         background-repeat: repeat;
         background-size: cover;
         display: flex;
+        max-height: 100vh;
         flex-direction: column;
+        position: relative;
         .conversation__header{
             display: flex;
             align-items: center;
@@ -177,16 +233,81 @@ $header-hieght: 65px;
             background-color: $primary-color ;
             display: flex;
             align-items: center;
+            z-index: 90;
+            width: 100%;
             input{
                 height: 45px;
                 border-radius: 22.5px;
                 padding-left: 18px;
             }
         }
+        //this class is proper to emoji-picker-react component
+        .emoji-picker-react{
+            width: 100%;
+            height: 45%;
+            animation: emojiTransition 1s forwards linear;
+        }
+        &__uploadPicker {
+        height: 260px;
+        width: 60px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        align-items: center;
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+        z-index: 50;
+        .child {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            border-radius: 25px;
+            position: absolute;
+            top: 100%;
+            background-size: contain;
+            cursor: pointer;
+        }
+        }
+        $child-num: 4;
+        @for $i from 1 through $child-num {
+        .child:nth-child(#{$i}) {
+            animation: animated-#{$i}
+            1s
+            cubic-bezier(0.56, -0.08, 0.58, 1.67)
+            (0.3s * $i)
+            forwards;
+            margin: 10px auto;
+            background-image: url(./image/picker-#{$i}.svg);
+        }
+
+        @keyframes animated-#{$i} {
+            0% {
+            top: 100%;
+            transform: scale(0);
+            }
+            100% {
+            top: (25% * ($i - 1));
+            transform: scale(1);
+            }
+        }
+        }
+
     }
 }
+@keyframes emojiTransition{
+    0%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(-112%);
+    }
+} 
 .contacts__list{
     width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 130px;
 }
 .chatMessage__container{
     display: flex;

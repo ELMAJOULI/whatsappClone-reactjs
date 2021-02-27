@@ -1,13 +1,13 @@
 import React from 'react'
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 
-function ChatBubble({left}) {
+function ChatBubble({messge="Hello there what are you doing ?",left,time}) {
     return (
         <div className={left? "chatBubble __flexLeft" : "chatBubble __flexRight"}>
             <div className={left? "chatBubble__container" : "chatBubble__container __backgroundRight"}>
-                <span className="__chatBubble__message __block">Hello How are you doing !?</span>
+                <span className="__chatBubble__message __block">{messge}</span>
                 <div className="__messageInfo">
-                    <span className="__time __block">11:24</span>
+                    <span className="__time __block">{time}</span>
                     {
                         !left &&
                         <DoneAllIcon className="__icon__small " fontSize="small" />

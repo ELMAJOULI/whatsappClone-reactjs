@@ -1,9 +1,9 @@
 import { Avatar } from '@material-ui/core'
 import React from 'react'
 
-function ChatMessage({picture,name,message,selected}) {
+function ChatMessage({picture,name,message,onClick,selected}) {
     return (
-        <div className={selected ?"chatMessage__container chatMessage__container__selected" :"chatMessage__container" }>
+        <div onClick={onClick} className={selected ?"chatMessage__container chatMessage__container__selected" :"chatMessage__container" }>
            <div className="chatMessage__avatar">
                <Avatar src={picture}/>
            </div> 
