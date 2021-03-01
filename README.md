@@ -1,2 +1,2 @@
 ## WhatsappClone using ReactJs
-![image info](./image/whatsapp_clone.gif)
+![](https://raw.githubusercontent.com/ELMAJOULI/whatsappClone-reactjs/master/src/image/whatsapp_clone.gif)
